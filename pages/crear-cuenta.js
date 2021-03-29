@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState} from 'react';
 import Layout from '../components/layouts/Layout';
+import Router from 'next/router';
 import {css} from '@emotion/react';
 import { Formulario, Campo, InputSubmit, Error } from '../components/ui/Formulario';
+
+import firebase from '../firebase';
 
 //validacion
 import useValidacion from '../hooks/useValidacion';
@@ -15,13 +18,26 @@ const STATE_INICIAL = {
 
 const CrearCuenta = () => {
 
-  const {valores, errores, submitForm, handleChange, handleSubmit, handleBlur} = useValidacion(STATE_INICIAL, validarCrearCuenta, crearCuenta );
+  const [error, guardarError] = useState(false);
 
-  function crearCuenta(){
-    console.log('creando cuenta...');
-  }
+  const {valores, errores, handleChange, handleSubmit, handleBlur} = useValidacion(STATE_INICIAL, validarCrearCuenta, crearCuenta );
 
   const {nombre, email, password} = valores;
+
+  async function crearCuenta(){
+    //como a estas alturas ya esta validado el formulario.. utilizamos firebase y creamos un nombre para la funcion Ej: registrar()
+    try {
+      await firebase.registrar(nombre, email, password);
+      Router.push('/');
+    } catch (error) {
+      console.error('Hubo un error', error.message);
+      guardarError(error.message);
+    }
+    
+    
+  }
+
+  
 
   return (
     <div>      
@@ -78,6 +94,7 @@ const CrearCuenta = () => {
             </Campo>
 
             {errores.password && <Error>{errores.password}</Error>}
+            {error && <Error>{error}</Error>}
             
             <InputSubmit
               type="submit"
