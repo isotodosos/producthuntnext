@@ -4,6 +4,13 @@ export const Formulario = styled.form`
     max-width : 600px;
     width : 95%;
     margin : 5rem auto 0 auto;
+
+    fieldset{
+        margin: 2rem 0;
+        border: 1px solid #e1e1e1;
+        font-size: 2rem;
+        padding: 2rem;
+    }
 `;
 
 export const Campo = styled.div`
@@ -14,11 +21,18 @@ export const Campo = styled.div`
     label{
         flex: 0 0 150px;//asi le decimos con display flex que no crezca por arriba ni por abajo y que tenga un width de 150px
         font-size: 1.8rem;
+        
     }
 
-    input{
+    input,
+    textarea{
         flex: 1;//asi le decimos que ocupe el resto que no ocupa el label
         padding: 1rem;
+        border: 1px solid #e1e1e1;
+    }
+
+    textarea{
+        height: 400px;
     }
 `;
 
