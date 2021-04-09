@@ -56,6 +56,10 @@ const Layout = (props) => {//layout principal o master
                     text-decoration: none;
                 }
 
+                img{
+                    max-width: 100%;
+                }
+
               `}              
             />
             

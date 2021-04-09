@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import {es} from 'date-fns/locale';
+import Link from 'next/Link';
 
 const Producto = styled.li`
     padding: 4rem;
@@ -74,7 +75,7 @@ const Votos = styled.div`
 
 
 const DeatallesProducto = ({producto}) => {
-
+    
     const { id, comentarios, creado, descripcion, empresa, nombre, url, urlimagen, votos } = producto;
 
     return(
@@ -85,7 +86,9 @@ const DeatallesProducto = ({producto}) => {
                 </div>
 
                 <div>
-                    <Titulo>{nombre}</Titulo>
+                    <Link href="productos/[id]" as={`productos/${id}`}>
+                        <Titulo>{nombre}</Titulo>
+                    </Link>
                     <TextoDescripcion>{descripcion}</TextoDescripcion>
                     <Comentarios>
                         <div>
