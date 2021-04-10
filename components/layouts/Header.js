@@ -11,7 +11,7 @@ import {FirebaseContext} from '../../firebase';
 
 const ContenedorHeader = styled.div`
     max-width: 1200px;
-    width: 95%inherit;
+    width: 95% inherit;
     margin: 0 auto;
     @media ( min-width : 768px){
         display : flex;
@@ -19,7 +19,7 @@ const ContenedorHeader = styled.div`
     }
 `;
 
-const Logo = styled.p`
+const Logo = styled.a`
     color : var(--naranja);
     font-size: 4rem;
     line-height: 0;
@@ -81,7 +81,7 @@ const Header = () => {
                         </Link>
 
                         <Link href="/crear-cuenta">
-                        <Boton>Crear Cuenta</Boton>
+                            <Boton>Crear Cuenta</Boton>
                         </Link>
                     </>
                     }
